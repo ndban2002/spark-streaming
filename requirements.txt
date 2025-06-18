@@ -1,0 +1,13 @@
+# PySpark dependencies
+pyspark==3.5.1
+
+# IP geolocation processing
+IP2Location==8.10.5
+
+# Additional utilities that might be useful
+psycopg2-binary==2.9.9
+
+venv-pack
+pyyaml
+ua-parser
+user-agents
