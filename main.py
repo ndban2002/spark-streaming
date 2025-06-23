@@ -2,7 +2,7 @@ import pyspark.sql.functions as f
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
 from models.schemas import schema
-from streaming_process import process_batch
+from streaming.streaming_process import process_batch
 
 
 from utils.config import Config

@@ -58,14 +58,8 @@ Thiết kế db và viết chương trình đưa ra các báo cáo như sau:
 
 **Cách chạy chương trình sử dụng thư viện ngoài thông qua virtual env**
 
-```
-cd 99-project; Compress-Archive -Path .\src\* -DestinationPath src.zip
-Compress-Archive -Path .\config\* -DestinationPath config.zip
-cd ..
-docker container stop streaming-spark
-docker container rm streaming-spark 
-docker run -ti --name streaming-spark --network=streaming-network -p 4040:4040 -v ${PWD}:/spark -v spark_lib:/opt/bitnami/spark/.ivy2 -v spark_data:/data -e PYSPARK_DRIVER_PYTHON='python' -e PYSPARK_PYTHON='./environment/bin/python' unigap/spark:3.5 bash -c "python -m venv pyspark_venv && source pyspark_venv/bin/activate && pip install -r /spark/99-project/requirements.txt && venv-pack -o pyspark_venv.tar.gz && spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.1,org.postgresql:postgresql:42.7.3 --archives pyspark_venv.tar.gz#environment --py-files /spark/99-project/config.zip,/spark/99-project/src.zip /spark/99-project/main.py"
-```
+docker run -ti --name streaming-spark --network=streaming-network -p 4040:4040 -v ${PWD}:/spark -v spark_lib:/opt/bitnami/spark/.ivy2 -v spark_data:/data -e PYSPARK_DRIVER_PYTHON='python' -e PYSPARK_PYTHON='./environment/bin/python' unigap/spark:3.5 bash -c "python -m venv pyspark_venv && source pyspark_venv/bin/activate && pip install -r /spark/requirements.txt && venv-pack -o pyspark_venv.tar.gz && spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.1,org.postgresql:postgresql:42.7.3 --archives pyspark_venv.tar.gz#environment --py-files /spark/config.zip,/spark/models.zip,/spark/utils.zip,/spark/stream.zip,/spark/resources.zip /spark/main.py"
+
 
 ## Link tham khảo
 

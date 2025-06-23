@@ -43,7 +43,7 @@ process_user_agent_udf = udf(process_user_agent, browser_os_schema)
 def process_ip_location(ip: str) -> tuple:
     try:
         ip_db = IP2Location.IP2Location()
-        ip_db.open("IP-COUNTRY.BIN")
+        ip_db.open("resources\IP-COUNTRY.BIN")
         record = ip_db.get_all(ip)
         return (
             ip,
@@ -85,7 +85,7 @@ def process_batch(batch_df, batch_id):
     
     print(product_df.count(), "products processed")
     print(store_df.count(), "stores processed")
-    # print(user_agent_df.count(), "user agents processed")
+    print(user_agent_df.count(), "user agents processed")
     print(location_df.count(), "locations processed")
     print(date_df.count(), "dates processed")
     print(collection_df.count(), "collections processed")

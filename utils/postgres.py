@@ -1,4 +1,4 @@
-def write_to_postgres(df, table_name, config, mode="ignore"):
+def write_to_postgres(df, table_name, config, mode="append"):
     url = f"jdbc:postgresql://{config['host']}:{config['port']}/{config['database']}"
     df.write \
         .mode(mode) \
